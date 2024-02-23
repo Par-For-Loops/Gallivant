@@ -12,11 +12,9 @@ import {
   TextField,
 } from '../../utils/material';
 
-// import Waypoint from './Waypoint';
+import Voice from './Voice';
 const Waypoint = lazy(() => import('./Waypoint'));
-// import Modal from './Modal';
 const CustomModal = lazy(() => import('./Modal'));
-// import Map from '../Map';
 const Map = lazy(() => import('../Map'));
 const CreateReview = lazy(() => import('../CreateReview'));
 
@@ -198,21 +196,25 @@ const Tour = (): JSX.Element => {
             onClick={() => {
               navigate(`/reviews/${id}`);
             }}
-          >Read Reviews</Button>
+          >
+            Read Reviews
+          </Button>
           <Button
             startIcon={<AddIcon />}
             variant='contained'
             color='primary'
             onClick={handleOpen}
-          >Add Review</Button>
+          >
+            Add Review
+          </Button>
           <Modal
             open={open}
             onClose={handleClose}
-            aria-labelledby="modal-modal-title"
-            aria-describedby="modal-modal-description"
+            aria-labelledby='modal-modal-title'
+            aria-describedby='modal-modal-description'
           >
             <Suspense fallback={<>Loading...</>}>
-              <CreateReview tourId={ tour?.id }/>
+              <CreateReview tourId={tour?.id} />
             </Suspense>
           </Modal>
           <br />
@@ -265,18 +267,32 @@ const Tour = (): JSX.Element => {
       <Suspense fallback={<>Loading...</>}>
         <CustomModal openModal={modal} closeModal={() => setModal(false)}>
           <div>
-            <TextField
+            <Voice
+              type='name'
+              label='Give the waypoint a name'
+              helperText='Waypoint Name'
+              textInput={wpName}
+              setTextInput={setWpName}
+            />
+            {/* <TextField
               autoFocus
               fullWidth
               label='Give the waypoint a name'
               value={wpName}
               onChange={(e) => handleChange(e, setWpName)}
               helperText='Waypoint Name'
-            />
+            /> */}
           </div>
           <br />
           <div>
-            <TextField
+            <Voice
+              type='description'
+              label='Give the waypoint a description'
+              helperText='Waypoint Description'
+              textInput={wpDesc}
+              setTextInput={setWpDesc}
+            />
+            {/* <TextField
               autoFocus
               fullWidth
               multiline
@@ -284,7 +300,7 @@ const Tour = (): JSX.Element => {
               value={wpDesc}
               onChange={(e) => handleChange(e, setWpDesc)}
               helperText='Waypoint Description'
-            />
+            /> */}
           </div>
           <br />
           <Button
@@ -300,7 +316,10 @@ const Tour = (): JSX.Element => {
       </Suspense>
 
       <Suspense fallback={<>Loading...</>}>
-        <CustomModal openModal={errorModal} closeModal={() => setErrorModal(false)}>
+        <CustomModal
+          openModal={errorModal}
+          closeModal={() => setErrorModal(false)}
+        >
           <Typography variant='body1'>
             Please click location on map first.
           </Typography>

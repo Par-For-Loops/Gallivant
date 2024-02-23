@@ -19,9 +19,10 @@ import {
   Modal,
   Select,
   Typography,
-  TextField,
+  // TextField,
 } from '../utils/material';
 
+import Voice from './tourComponents/Voice';
 
 const Tours = (): JSX.Element => {
   type Tour = {
@@ -150,7 +151,14 @@ const Tours = (): JSX.Element => {
           sx={{ border: '2px solid grey', bgcolor: 'white' }}
         >
         <div>
-          <TextField
+          <Voice
+            type='name'
+            label='Give your tour a name'
+            helperText='Tour Description'
+            textInput={tourName}
+            setTextInput={setName}
+          />
+          {/* <TextField
             autoFocus
             fullWidth
             label='Give your tour a name'
@@ -158,9 +166,9 @@ const Tours = (): JSX.Element => {
             onChange={(e) => handleChange(e, setName)}
             helperText='Tour Name'
           />
-  
+        </div>
         <br />
-   
+        <div>
           <TextField
             autoFocus
             fullWidth
@@ -170,25 +178,7 @@ const Tours = (): JSX.Element => {
             onChange={(e) => handleChange(e, setDescription)}
             helperText='Tour Description'
           />
-
-        <br />
-
-          <FormControl fullWidth>
-           <InputLabel id="demo-simple-select-label">Category</InputLabel>
-            <Select
-              labelId="demo-simple-select-label"
-              id="demo-simple-select"
-              value={category}
-              label="Category"
-              onChange={handleCatChange}
-            > 
-            {
-              categories.map((category, i) => (
-                <MenuItem key={i} value={category}>{category}</MenuItem>
-              ))
-            }
-            </Select>
-         </FormControl>
+        </div>
         <br />
 
         <Button
